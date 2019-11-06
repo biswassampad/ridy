@@ -194,6 +194,7 @@ class RideRequestController extends Controller
 
     public function CancelRideRequest(Request $request){
         $request_id=$request->request_id;
+        $cancel_reason = $request->cancel_reason;
         $status = RideRequest::where('id',$request_id)->get('status');
         $status_status=$status[0];
         $time = \Carbon\Carbon::now()->toDateTimeString();
@@ -201,11 +202,17 @@ class RideRequestController extends Controller
         if($status_status['status']=='Accepted'){
             $response= 'Sorry !! Ride is already accepted';
         }else{
-            RideRequest::where('id',$request_id)->update([
-                'status'=>'Cancelled',
-                'updated_at'=>$time
-                ]);
-            $response = 'Ride has been cancelled successfully';
+            if($cancel_reason){
+                RideRequest::where('id',$request_id)->update([
+                    'status'=>'Cancelled',
+                    'cancel_reason'=>$cancel_reason,
+                    'updated_at'=>$time
+                    ]);
+                $response = 'Ride has been cancelled successfully';
+    
+            }else{
+                $response = 'Please Provide a cancel Reason';
+            }
         }
         return response($response);
     }
