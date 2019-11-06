@@ -30,6 +30,7 @@ class CreateRideRequestsTable extends Migration
             $table->string('locality');
             $table->string('ride_type');
             $table->string('status');
+            $table->string('cancel_reason')->nullable();
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ class CreateRidesTable extends Migration
     {
         Schema::create('rides', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('ride_id');
             $table->string('requested_user');
             $table->string('pooled_user');
             $table->string('destination');
@@ -23,10 +24,11 @@ class CreateRidesTable extends Migration
             $table->string('pickup_address');
             $table->string('pickup_date');
             $table->string('pickup_time');
-            $table->string('ride_duration');
+            $table->string('ride_duration')->nullable();
             $table->string('ride_fare');
             $table->string('otp');
             $table->string('status');
+            $table->string('cancel_reason')->nullable();
             $table->string('payment_status');
             $table->timestamps();
         });
