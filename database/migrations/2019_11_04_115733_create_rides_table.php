@@ -27,6 +27,7 @@ class CreateRidesTable extends Migration
             $table->string('ride_fare');
             $table->string('otp');
             $table->string('status');
+            $table->string('payment_status');
             $table->timestamps();
         });
     }

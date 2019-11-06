@@ -22,3 +22,11 @@ Route::post('/addUserDetails','UserDetailsController@create');
 // creating a ride routes
 
 Route::post('/requestRide','RideRequestController@create');
+
+// getting ride requests
+
+Route::post('/rideRequests','RideRequestController@RideRequestList');
+Route::post('/confirmRide','RideRequestController@confirmRequest');
+Route::post('/cancelRide','RideRequestController@CancelRideRequest');
+Route::post('/updateRide','RideRequestController@updateRideRequest');
+Route::post('/updateRidePayment','RideRequestController@UpdateRidePayment');

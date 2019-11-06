@@ -24,6 +24,7 @@ class CreateUserDetailsTable extends Migration
             $table->string('id_card_image')->nullable();
             $table->string('vehicle_number')->nullable();
             $table->string('vehicle_rc_image')->nullable();
+            $table->string('vehicle_type')->nullable();
             $table->string('driving_license_number')->nullable();
             $table->string('driving_license_image')->nullable();
             $table->timestamps();
