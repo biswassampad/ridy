@@ -30,3 +30,11 @@ Route::post('/confirmRide','RideRequestController@confirmRequest');
 Route::post('/cancelRide','RideRequestController@CancelRideRequest');
 Route::post('/updateRide','RideRequestController@updateRideRequest');
 Route::post('/updateRidePayment','RideRequestController@UpdateRidePayment');
+Route::post('/getrquestsByUser','RideRequestController@getRideRequestsByUser');
+
+// ride apis
+Route::post('/startRide','RideController@StartRide');
+Route::post('/completeRide','RideController@CompleteRide');
+Route::post('/cancelRide','RideController@cancelRide');
+Route::post('/validateotp','RideController@validateOtp');
+Route::post('/rateuser','RideController@RateUser');

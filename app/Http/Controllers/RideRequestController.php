@@ -285,6 +285,13 @@ class RideRequestController extends Controller
         return response()->json($response);
        
     }
+
+    public function getRideRequestsByUser(Request $request){
+        $id = $request->user_id;
+        $list_of_requests = RideRequest::where('user_id',$id)->get();
+
+        return response()->json($list_of_requests);
+    }
     // It is to be done when google api is enabled
     // public function FareEstimater(Request $request){
     //     $pickup = $request->pickup;

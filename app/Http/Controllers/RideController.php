@@ -16,6 +16,12 @@ class RideController extends Controller
 
     }
     public function RateUser(Request $request){
+
+    }
+    public function validateOtp(Request $request){
+
+    }
+    public function rateRide(Request $request){
         
     }
 }
