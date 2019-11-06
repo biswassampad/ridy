@@ -38,3 +38,5 @@ Route::post('/completeRide','RideController@CompleteRide');
 Route::post('/cancelRide','RideController@cancelRide');
 Route::post('/validateotp','RideController@validateOtp');
 Route::post('/rateuser','RideController@RateUser');
+Route::post('/getRidesByPooler','RideController@getRidesByPooler');
+Route::post('/getallridesbypooler','RideController@getAllRidesByPooler');
