@@ -27,6 +27,7 @@ class CreateRidesTable extends Migration
             $table->string('ride_duration')->nullable();
             $table->string('ride_fare');
             $table->string('otp');
+            $table->string('end_otp');
             $table->string('status');
             $table->string('cancel_reason')->nullable();
             $table->string('payment_status');

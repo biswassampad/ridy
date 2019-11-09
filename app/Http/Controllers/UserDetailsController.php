@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Credit;
 use Illuminate\Support\Facades\Storage;
 use App\UserDetails;
+use App\Earning;
 use Illuminate\Support\Facades\Input;
 
 class UserDetailsController extends Controller
@@ -24,7 +26,13 @@ class UserDetailsController extends Controller
                 'mode'=>$request->mode,
                 'created_at'=>$time,
                 'updated_at'=>$time,
-               ]);    
+               ]);
+            Credit::insert([
+                'usser_id'=>$user_id,
+                'credits'=>0,
+                'created_at'=>$time,
+                'updated_at'=>$time
+            ]);    
             // building response
             $response = "User Data has been updated for Ride";
        
@@ -58,6 +66,12 @@ class UserDetailsController extends Controller
             'created_at'=>$time,
             'updated_at'=>$time
         ]);
+        Earning::insert([
+            'usser_id'=>$user_id,
+            'balance'=>0,
+            'created_at'=>$time,
+            'updated_at'=>$time
+        ]);    
         
         // building response 
         $response = "User Data has been updated for pool";

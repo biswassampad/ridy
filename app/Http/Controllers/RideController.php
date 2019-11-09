@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\RideRequest;
 use App\Ride;
+use App\Credit;
+use App\Earning;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -30,7 +32,8 @@ class RideController extends Controller
         $filtered_starting_time = $startingtime['updated_at'];
         $startingtimefinal =new DateTime($filtered_starting_time);
         $endingtimefinal = new Datetime($time);
-
+        $user_id = "";
+        $transaction_mode = "";
         $interval = date_diff($startingtimefinal,$endingtimefinal);
         $interval = $interval->format('%h:%i:%s');
         Ride::where('ride_id',$ride_id)->update([
@@ -42,7 +45,17 @@ class RideController extends Controller
             'status'=>'Completed',
             'updated_at'=>$time
         ]);
+        
+        $user_details = $this->userDataFromRideRequests($ride_id);
+        foreach($user_details as $item){
+            $user_id = $item['user_id'];
+            $transaction_mode =$item['payment_mode'];
+        }
 
+        if($payment_mode == "Ridy Credit"){
+            
+        }
+        
         return response()->json('Thanks for the ride..');
     }
     public function CancelRide(Request $request){
@@ -106,5 +119,18 @@ class RideController extends Controller
         $list=Ride::where('pooled_user',$pooler_id)->get();
 
         return response()->json($list);
+    }
+    public function userDataFromRideRequests($ride_id){
+        return Credit::where('id',$ride_id)->get();
+    }
+    public function rideDetailsfromRide($ride_id){
+        return Ride::where('ride_id',$ride_id)->get();
+    }
+    public function deductBalanceFromUser($ride_fare,$user_id,$ride_id){
+        $user_details = $this->rideDetailsfromRide($ride_id);
+        
+        foreach($user_details as $item){
+
+        }
     }
 }

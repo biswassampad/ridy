@@ -40,3 +40,8 @@ Route::post('/validateotp','RideController@validateOtp');
 Route::post('/rateuser','RideController@RateUser');
 Route::post('/getRidesByPooler','RideController@getRidesByPooler');
 Route::post('/getallridesbypooler','RideController@getAllRidesByPooler');
+
+//credit apis
+
+Route::post('/update','CreditController@update');
+Route::post('/deduct','CreditController@deduct');

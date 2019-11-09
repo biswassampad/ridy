@@ -139,6 +139,7 @@ class RideRequestController extends Controller
         $response='';
         $time = \Carbon\Carbon::now()->toDateTimeString();
         $otp = rand ( 10000 , 99999 );
+        $end_otp = rand(10000,99999);
         // iterating over user details 
         foreach($ride_details as $item){
             $user_id = $item['user_id'];
@@ -170,6 +171,7 @@ class RideRequestController extends Controller
                 'pickup_time'=>$pickup_time,
                 'ride_fare'=>$ride_fare,
                 'otp'=>$otp,
+                'end_otp'=>$end_otp,
                 'status'=>'Accepted',
                 'payment_status'=>$payment_status,
                 'created_at'=>$time,
@@ -193,6 +195,7 @@ class RideRequestController extends Controller
     }
 
     public function CancelRideRequest(Request $request){
+        
         $request_id=$request->request_id;
         $cancel_reason = $request->cancel_reason;
         $status = RideRequest::where('id',$request_id)->get('status');
@@ -200,7 +203,7 @@ class RideRequestController extends Controller
         $time = \Carbon\Carbon::now()->toDateTimeString();
         $response='';
         if($status_status['status']=='Accepted'){
-            $response= 'Sorry !! Ride is already accepted';
+        
         }else{
             if($cancel_reason){
                 RideRequest::where('id',$request_id)->update([
